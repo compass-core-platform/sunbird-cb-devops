@@ -1,0 +1,11 @@
+---
+- name: Auto Start Stop  instance
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  
+  roles:
+    - role: auto-start-service
+      tags: [auto-start-service]
+    - role: auto-stop-service
+      tags: [auto-stop-service]
