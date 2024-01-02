@@ -7,9 +7,9 @@
     SP_CRED_USR: "{{ SP_CRED_USER }}"
     SP_CRED_PSW : "{{ SP_CRED_PSWD }}"
     TENANT_ID : "{{ TENANT_IDD }}"
-  tasks:
-    - name: test
-      shell: "echo helo"
+  roles:
+    - role: auto-start-service
+      tags: [auto-start-service]"
   
         
       
