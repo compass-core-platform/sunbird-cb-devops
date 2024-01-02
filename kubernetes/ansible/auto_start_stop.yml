@@ -9,7 +9,7 @@
     TENANT_ID : "{{ TENANT_IDD }}"
   roles:
     - role: auto-start-service
-      tags: [auto-start-service]"
+      tags: [auto-start-service]
   
         
       
