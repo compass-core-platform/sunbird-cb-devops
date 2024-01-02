@@ -12,7 +12,7 @@
         SP_CRED_USR: "{{ SP_CRED_USER }}"
         SP_CRED_PSW : "{{ SP_CRED_PSWD }}"
         TENANT_ID : "{{ TENANT_IDD }}"
-      when: "{{ SP_CRED_USER }}" == "test"
+      when:  test == test
  
   
         
