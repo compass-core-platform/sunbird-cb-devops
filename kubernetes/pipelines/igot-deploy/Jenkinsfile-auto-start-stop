@@ -20,13 +20,13 @@ node() {
        
             ansiColor('xterm') {
                 // values = lp_dp_params()
-               /* stage('get artifact') {
+                stage('get artifact') {
                     currentWs = sh(returnStdout: true, script: 'pwd').trim()
-                    artifact = values.artifact_name + ":" + values.artifact_version
+                    //artifact = values.artifact_name + ":" + values.artifact_version
                     values.put('currentWs', currentWs)
-                    values.put('artifact', artifact)
+                    //values.put('artifact', artifact)
                     artifact_download(values)
-                }*/
+                }
                 stage('aks-start-stop'){
                    
                     ansiblePlaybook = "--extra-vars \"remote=${params.remote}\" ${currentWs}/kubernetes/ansible/auto_start_stop.yml"
@@ -36,9 +36,9 @@ node() {
                     println values
                     ansible_playbook_run(values)
                     currentBuild.result = "SUCCESS"
-                    currentBuild.description = "Artifact: ${values.artifact_version}, Private: ${params.private_branch}, Public: ${params.branch_or_tag}"
-                    archiveArtifacts artifacts: "${artifact}", fingerprint: true, onlyIfSuccessful: true
-                    archiveArtifacts artifacts: 'metadata.json', onlyIfSuccessful: true
+                    //currentBuild.description = "Artifact: ${values.artifact_version}, Private: ${params.private_branch}, Public: ${params.branch_or_tag}"
+                    //archiveArtifacts artifacts: "${artifact}", fingerprint: true, onlyIfSuccessful: true
+                    //archiveArtifacts artifacts: 'metadata.json', onlyIfSuccessful: true
                 }
             }
          summary()
