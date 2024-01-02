@@ -7,7 +7,7 @@
     - name: test
       include_role:
         name: auto-start-service
-        tasks_from: main.yml
+        
       vars:
         SP_CRED_USR: "{{ SP_CRED_USER }}"
         SP_CRED_PSW : "{{ SP_CRED_PSWD }}"
