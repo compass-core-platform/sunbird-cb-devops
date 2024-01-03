@@ -1,0 +1,5 @@
+---
+
+- name: Start the stage instances
+  shell: "az login --service-principal -u {{ SP_CRED_USR }} -p {{ SP_CRED_PSW }} --tenant  {{ TENANT_ID }}"
+  
