@@ -1,8 +1,11 @@
-- hosts: localhost
-  gather_facts: no
+---
+- name: Auto Start Stop  instance
+  hosts: localhost
+  gather_facts: false
   connection: local
   vars_files:
-    - "{{inventory_dir}}/secrets.yml"
+    - "{{inventory_dir}}/group_vars/all.yml"
+    - "{{inventory_dir}}/common.yml"
   tasks:
     - name: upload batch of files to azure storage
       include_role:
