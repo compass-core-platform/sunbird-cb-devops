@@ -1,19 +1,18 @@
-- hosts: local
-  gather_facts: no
+---
+- name: Auto Start Stop  instance
+  hosts: localhost
+  gather_facts: false
+  connection: local
   vars_files:
     - "{{inventory_dir}}/group_vars/all.yml"
-    - "{{inventory_dir}}/secrets.yml"
-  tasks:
-    - name: upload batch of files to azure storage
-      include_role:
-        name: auto-start-service
-        tasks_from: blob-upload-batch.yml
-      vars:
-        SP_CRED_USR: "{{ SP_CRED_USER }}"
-        SP_CRED_PSW : "{{ SP_CRED_PSWD }}"
-        TENANT_ID : "{{ TENANT_IDD }}"
-      when:  test == test
- 
-  
-        
-      
+    - "{{inventory_dir}}/common.yml"
+  vars:
+    SP_CRED_USR: "{{ SP_CRED_USER }}"
+    SP_CRED_PSW : "{{ SP_CRED_PSWD }}"
+    TENANT_ID : "{{ TENANT_IDD }}"
+       
+  roles:
+    - role: auto-start-service
+      tags: [auto-start-service]
+    - role: auto-stop-service
+      tags: [auto-stop-service]
