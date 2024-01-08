@@ -9,10 +9,7 @@
         name: auto-start-service
         tasks_from: blob-upload.yml
       vars:
-        blob_container_name: "{{ cloud_storage_artifacts_bucketname }}"
-        container_public_access: "off"
-        blob_file_name: "{{ artifact }}"
-        local_file_or_folder_path: "{{ artifact_path }}"
-        storage_account_name: "{{ cloud_artifact_storage_accountname }}"
-        storage_account_key: "{{ cloud_artifact_storage_secret }}"
+        SP_CRED_USR: "{{ SP_CRED_USER }}"
+        SP_CRED_PSW : "{{ SP_CRED_PSWD }}"
+        TENANT_ID : "{{ TENANT_IDD }}"
       when: cloud_service_provider == "azure"
