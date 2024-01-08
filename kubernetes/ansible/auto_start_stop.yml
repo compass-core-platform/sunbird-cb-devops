@@ -5,8 +5,8 @@
     - "{{inventory_dir}}/secrets.yml"
   tasks:
     - name: upload artifact to azure storage
-      include_role: auto-start-service
-        name: 
+      include_role: 
+        name: auto-start-service
         tasks_from: blob-upload.yml
       vars:
         blob_container_name: "{{ cloud_storage_artifacts_bucketname }}"
