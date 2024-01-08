@@ -1,17 +1,18 @@
 ---
-- name: Auto Start Stop  instance
-  hosts: localhost
-  gather_facts: false
-  connection: local
+- hosts: localhost
+  become: yes
   vars_files:
-    - "{{inventory_dir}}/group_vars/all.yml"
-    - "{{inventory_dir}}/common.yml"
+    - "{{inventory_dir}}/secrets.yml"
   tasks:
-    - name: upload batch of files to azure storage
-      include_role:
-        name: auto-start-service
-        tasks_from: login.yml
+    - name: upload artifact to azure storage
+      include_role: auto-start-service
+        name: 
+        tasks_from: blob-upload.yml
       vars:
-        SP_CRED_USR: "{{ SP_CRED_USER }}"
-        SP_CRED_PSW : "{{ SP_CRED_PSWD }}"
-        TENANT_ID : "{{ TENANT_IDD }}"
+        blob_container_name: "{{ cloud_storage_artifacts_bucketname }}"
+        container_public_access: "off"
+        blob_file_name: "{{ artifact }}"
+        local_file_or_folder_path: "{{ artifact_path }}"
+        storage_account_name: "{{ cloud_artifact_storage_accountname }}"
+        storage_account_key: "{{ cloud_artifact_storage_secret }}"
+      when: cloud_service_provider == "azure"
