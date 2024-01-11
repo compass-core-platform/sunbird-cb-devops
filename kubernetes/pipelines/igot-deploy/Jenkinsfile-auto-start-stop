@@ -22,7 +22,7 @@ node() {
             jobName = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-1].trim().toLowerCase()
             currentWs = sh(returnStdout: true, script: 'pwd').trim()
             ansiblePlaybook =  "--extra-vars \"remote=${params.remote}\" ${currentWs}/kubernetes/ansible/auto_start_stop.yml"
-            ansibleExtraArgs = "--tag ${params.module} --vault-password-file /var/lib/jenkins/secrets/vault-pass -v"
+            ansibleExtraArgs = "--tag $role_name --vault-password-file /var/lib/jenkins/secrets/vault-pass -v"
             values.put('currentWs', currentWs)
             values.put('ansiblePlaybook', ansiblePlaybook)
             values.put('ansibleExtraArgs', ansibleExtraArgs)
