@@ -4,12 +4,17 @@
   vars_files:
     - "{{inventory_dir}}/secrets.yml"
   tasks:
-    - name: upload artifact to azure storage
-      include_role: 
-        name: auto-start-service
-        tasks_from: blob-upload.yml
-      vars:
-        SP_CRED_USR: "{{ SP_CRED_USER }}"
-        SP_CRED_PSW : "{{ SP_CRED_PSWD }}"
-        TENANT_ID : "{{ TENANT_IDD }}"
-      when: cloud_service_provider == "azure"
+    - name: Print message
+      debug:
+        msg: Hello Ansible World
+ # tasks:
+  #  - name: upload artifact to azure storage
+   #   include_role: 
+   #     name: auto-start-service
+    #    tasks_from: blob-upload.yml
+    #  vars:
+     #   SP_CRED_USR: "{{ SP_CRED_USER }}"
+      #  SP_CRED_PSW : "{{ SP_CRED_PSWD }}"
+       # TENANT_ID : "{{ TENANT_IDD }}"
+      #when: cloud_service_provider == "azure"
+      
