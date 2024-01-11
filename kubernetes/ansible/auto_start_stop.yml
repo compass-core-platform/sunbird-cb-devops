@@ -1,19 +1,11 @@
 ---
-- hosts: localhost
-  become: yes
-  vars_files:
-    - "{{inventory_dir}}/secrets.yml"
-  tasks:
-    - name: Print message
-      debug:
-        msg: Hello Ansible World
-    - name: upload artifact to azure storage
-      include_role: 
-        name: auto-start-service
-        tasks_from: blob-upload.yml
-      vars:
-        SP_CRED_USR: "{{ SP_CRED_USER }}"
-        SP_CRED_PSW : "{{ SP_CRED_PSWD }}"
-        TENANT_ID : "{{ TENANT_IDD }}"
-      when: cloud_service_provider == "azure"
-      
+- name: Auto Start Stop  instance
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  	
+  roles:
+    - role: aks-auto-start-service
+      tags: [aks-auto-start-service]
+    - role: aks-auto-stop-service
+      tags: [aks-auto-stop-service]
