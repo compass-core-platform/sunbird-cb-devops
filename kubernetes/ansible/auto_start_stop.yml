@@ -4,7 +4,7 @@
   gather_facts: false
   connection: local	
   roles:
-    - role: aks-auto-start-service
-      tags: [aks-auto-start-service]
-    - role: aks-auto-stop-service
-      tags: [aks-auto-stop-service]
+     - role: auto-start-service
+       tags: [auto-start-service] 
+     - role: auto-stop-service
+       tags: [auto-stop-service]
