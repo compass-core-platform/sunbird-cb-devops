@@ -2,8 +2,7 @@
 - name: Auto Start Stop  instance
   hosts: localhost
   gather_facts: false
-  connection: local
-  	
+  connection: local	
   roles:
     - role: aks-auto-start-service
       tags: [aks-auto-start-service]
