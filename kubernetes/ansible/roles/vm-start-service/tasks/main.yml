@@ -1,0 +1,10 @@
+---
+
+- name: Start the vm instances
+  shell: |
+    az login --service-principal -u {{ SP_CRED_USR }} -p {{ SP_CRED_PSW }} --tenant  {{ TENANT_ID }}
+    az vm start --ids {{azure_vm_list}}
+    az logout
+  environment:
+    AZURE_CONFIG_DIR: {{azure_conf_vms}}
+  no_log: true

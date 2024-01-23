@@ -8,3 +8,7 @@
        tags: [auto-start-service] 
      - role: auto-stop-service
        tags: [auto-stop-service]
+     - role: vm-start-service
+       tags: [vm-start-service]
+     - role: vm-stop-service
+       tags: [vm-stop-service]

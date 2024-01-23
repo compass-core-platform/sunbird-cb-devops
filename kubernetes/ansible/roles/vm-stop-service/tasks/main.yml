@@ -1,0 +1,8 @@
+---
+
+- name: stop the vms instances
+  shell: |
+    az login --service-principal -u {{ SP_CRED_USR }} -p {{ SP_CRED_PSW }} --tenant  {{ TENANT_ID }}
+    az vm stop --ids {{azure_vm_list}}
+    az logout
+  no_log: true
