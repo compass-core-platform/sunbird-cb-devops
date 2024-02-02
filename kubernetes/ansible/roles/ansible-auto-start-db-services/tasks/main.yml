@@ -2,7 +2,7 @@
 - name: Start the logstash service
   service: name=logstash state=started
 - name: Start the elasticsearch.service service
-  service: name=cs-node-1_elasticsearch.service state=started
+  service: name=es7-1_elasticsearch.service state=started
 - name: Start the mongod service
   service: name=mongod state=started
 - name: Start the postgresql service
