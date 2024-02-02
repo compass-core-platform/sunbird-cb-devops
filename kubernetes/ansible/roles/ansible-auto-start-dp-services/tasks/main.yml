@@ -1,5 +1,6 @@
 ---
-
+- name: Start the influxdb instances
+  service: name=influxdb state=started
 - name: Check if keycloak is running
   become: yes
   shell:  ps -ef | /etc/init.d/keycloak status | wc -l
