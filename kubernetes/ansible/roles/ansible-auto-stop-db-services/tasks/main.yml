@@ -2,7 +2,7 @@
 - name: stop the logstash service
   service: name=logstash state=stopped
 - name: stop the elasticsearch.service service
-  service: name=cs-node-1_elasticsearch.service state=stopped
+  service: name=es7-1_elasticsearch.service state=stopped
 - name: stop the mongod service
   service: name=mongod state=stopped
 - name: stop the postgresql service
