@@ -1,0 +1,13 @@
+---
+
+- name: Stop the tomcat instances
+  service: name=tomcat state=stopped
+- name: Stop logstash service
+  service: name=logstash state=stopped
+- name: Stop zookeeper service
+  service: name=zookeeper state=stopped
+- name: Stop kafka service
+  service: name=kafka state=stopped
+- name: Stop redis service
+  service: name=redis state=stopped
+

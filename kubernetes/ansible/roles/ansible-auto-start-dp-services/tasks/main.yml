@@ -1,0 +1,13 @@
+---
+
+- name: Check if keycloak is running
+  become: yes
+  shell:  ps -ef | /etc/init.d/keycloak status | wc -l
+  register: keycloak_process
+- name: Start keycloak
+  become: yes
+  shell:  /etc/init.d/keycloak start
+  args:
+    chdir: "{{keycloak_home}}"
+  when: "keycloak_process.stdout == '0'"
+  

@@ -1,0 +1,13 @@
+---
+
+- name: Start the tomcat instances
+  service: name=tomcat state=started
+- name: start logstash service
+  service: name=logstash state=started
+- name: start zookeeper service
+  service: name=zookeeper state=started
+- name: start kafka service
+  service: name=kafka state=started
+- name: start redis service
+  service: name=redis state=started
+
