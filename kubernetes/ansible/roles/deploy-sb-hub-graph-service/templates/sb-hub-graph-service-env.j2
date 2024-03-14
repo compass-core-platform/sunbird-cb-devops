@@ -75,3 +75,13 @@ network.request.default.limit={{ hub_network_request_default_limit | default('50
 network.request.max.limit={{ hub_network_request_max_limit | default('100') }}
 
 
+notification.template.targetUrl.value=https://compass-dev.tarento.com/
+notification.template.v2.sender=compass-dev-notification@tarento.com
+
+notification.template.push.id=cbplanContentRequestTemplate
+
+notification.template.v2.request.body=<p>Hello,<br /> </p><p>You received a connect request on the Compass platform from the name #from-connect-UUID. For more please visit <a href="#targetUrl">here.</a></p><br /> Regards,<br /> <br /> The Compass Team</p><p>&nbsp;</p>
+
+
+notification.template.v2.response.body=<p>Hello,<br /> </p><p>Your connect request on the Compass platform is #status from the name #from-connect-UUID. For more please visit <a href="#targetUrl">here.</a></p><br /> Regards,<br /> <br /> The Compass Team</p><p>&nbsp;</p>
+sunbird.feed.endpoint=private/user/feed/v2/create
