@@ -111,4 +111,6 @@
     - role: auto-start-service
       tags: [auto-start-service]
     
+    - role: deploy-goals-module-service
+      tags: [deploy-goals-module-service]
 
