@@ -10,7 +10,6 @@
 - hosts: dp_env
   vars_files:
    - "{{inventory_dir}}/group_vars/all.yml"
-	@@ -15,12 +7,4 @@
   roles:
    - ansible-auto-start-dp-services
 
