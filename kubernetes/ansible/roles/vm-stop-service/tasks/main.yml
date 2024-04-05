@@ -3,6 +3,6 @@
 - name: stop the vms instances
   shell: |
     az login --service-principal -u {{ SP_CRED_USR }} -p {{ SP_CRED_PSW }} --tenant  {{ TENANT_ID }}
-    az vm deallocate --resource-group {{ RG_name }} --name {{ vm_name }}
+    az vm deallocate --ids (az vm list -g  {{ RG_name }} --query "[].id" -o tsv | grep -v {{ druid_vm_name }})
     az logout
   no_log: true
