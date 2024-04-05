@@ -6,4 +6,4 @@
     az vm start --ids (az vm list -g  {{ RG_name }} --query "[].id" -o tsv | grep {{ druid_vm_name }})
     az logout
   
-  no_log: true
+ # no_log: true
