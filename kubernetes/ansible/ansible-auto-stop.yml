@@ -1,11 +1,22 @@
 ---
-- hosts: dp_env
+- hosts: kp_env
   vars_files:
    - "{{inventory_dir}}/group_vars/all.yml"
    - "{{inventory_dir}}/common.yml"
   become: yes
   roles:
-   - ansible-auto-stop-dp-services
-   
+   - ansible-auto-stop-kp-services
 
-   
+- hosts: dp_env
+  vars_files:
+   - "{{inventory_dir}}/group_vars/all.yml"
+  roles:
+   - ansible-auto-stop-dp-services
+
+- hosts: db_env
+  vars_files:
+   - "{{inventory_dir}}/group_vars/all.yml"
+   - "{{inventory_dir}}/common.yml"
+  become: yes
+  roles:
+   - ansible-auto-stop-db-services
