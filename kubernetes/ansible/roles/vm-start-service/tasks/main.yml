@@ -3,7 +3,7 @@
 - name: Start the vm instances
   shell: |
     az login --service-principal -u {{ SP_CRED_USR }} -p {{ SP_CRED_PSW }} --tenant  {{ TENANT_ID }}
-    az vm start --ids (az vm list -g  {{ RG_name }} --query "[].id" -o tsv | grep -v {{ druid_vm_name }})
+    az vm start --ids (az vm list -g  {{ RG_name }} --query "[].id" -o tsv | grep {{ druid_vm_name }})
     az logout
   
   no_log: true
