@@ -30,49 +30,28 @@
         <hudson.model.StringParameterDefinition>
           <name>absolute_job_path</name>
           <description>&lt;font color=dimgray size=2&gt;&lt;b&gt;Do not change this value! The metadata.json will be copied from this job.&lt;/b&gt;&lt;/font&gt;</description>
-          <defaultValue>ArtifactUpload/dev/igot/sb-cb-ext-service</defaultValue>
+          <defaultValue>Build/igot/goals-module-service</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>image_tag</name>
-          <description>&lt;font color=red size=2&gt;&lt;b&gt;CAUTION: If the value is blank, image tag will be taken from the latest metadata.json.&lt;/b&gt;&lt;/font&gt;</description>
+          <description>&lt;font color=darkgreen size=2&gt;&lt;b&gt;OPTIONAL: Specify the tag to upload a specific image version to the container registry.&lt;/b&gt;&lt;/font&gt;</description>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.6.1">
-          <name>private_branch</name>
-          <randomName>choice-parameter-2544395024638227</randomName>
-          <visibleItemCount>1</visibleItemCount>
-          <script class="org.biouno.unochoice.model.GroovyScript">
-            <secureScript plugin="script-security@1138.v8e727069a_025">
-              <script>if (override_private_branch.equals("true")) {
-return """&lt;input name="value" value="${private_repo_branch}" class="setting-input"  type="text"&gt;&lt;br&gt; &lt;font color=dimgray size=2&gt;&lt;b&gt;Change this value to checkout a different branch from private repository.&lt;/b&gt;&lt;/font&gt;"""
-}
-else
-return """&lt;b&gt;This parameter is not used&lt;/b&gt;"""</script>
-              <sandbox>false</sandbox>
-            </secureScript>
-            <secureFallbackScript plugin="script-security@1138.v8e727069a_025">
-              <script>return """&lt;b&gt;This parameter is not used&lt;/b&gt;"""</script>
-              <sandbox>false</sandbox>
-            </secureFallbackScript>
-          </script>
-          <projectName>sb-cb-ext-service</projectName>
-          <projectFullName>Deploy/dev/igot/sb-cb-ext-service</projectFullName>
-          <parameters class="linked-hash-map"/>
-          <referencedParameters/>
-          <choiceType>ET_FORMATTED_HTML</choiceType>
-          <omitValueField>true</omitValueField>
-        </org.biouno.unochoice.DynamicReferenceParameter>
         <hudson.model.ChoiceParameterDefinition>
-          <name>role_name</name>
+          <name>artifact_source</name>
+          <description>&lt;font color=dimgray size=2&gt;&lt;b&gt;
+ArtifactRepo - Push the docker image to container registry.
+&lt;/b&gt;&lt;/font&gt;</description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
-              <string>deploy-sb-cb-ext-service</string>
+              <string>ArtifactRepo</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>branch_or_tag</name>
+          <name>docker_server</name>
+          <defaultValue>compassregistry.azurecr.io</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -88,7 +67,18 @@ return """&lt;b&gt;This parameter is not used&lt;/b&gt;"""</script>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
-      <triggers/>
+      <triggers>
+        <jenkins.triggers.ReverseBuildTrigger>
+          <spec/>
+          <upstreamProjects>Build/igot/goals-module-service</upstreamProjects>
+          <threshold>
+            <name>SUCCESS</name>
+            <ordinal>0</ordinal>
+            <color>BLUE</color>
+            <completeBuild>true</completeBuild>
+          </threshold>
+        </jenkins.triggers.ReverseBuildTrigger>
+      </triggers>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2660.2664.v4c114e93f4c1">
@@ -96,12 +86,12 @@ return """&lt;b&gt;This parameter is not used&lt;/b&gt;"""</script>
       <configVersion>2</configVersion>
       <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
-          <url>https://github.com/compass-core-platform/sunbird-cb-devops.git</url>
+          <url>https://github.com/sunbird-cb/sunbird-cb-devops.git</url>
         </hudson.plugins.git.UserRemoteConfig>
       </userRemoteConfigs>
       <branches>
         <hudson.plugins.git.BranchSpec>
-          <name>cbrelease-4.8.10</name>
+          <name>cbrelease-4.8.6</name>
         </hudson.plugins.git.BranchSpec>
       </branches>
       <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -116,7 +106,7 @@ return """&lt;b&gt;This parameter is not used&lt;/b&gt;"""</script>
         </hudson.plugins.git.extensions.impl.CloneOption>
       </extensions>
     </scm>
-    <scriptPath>kubernetes/pipelines/igot-deploy/Jenkinsfile</scriptPath>
+    <scriptPath>pipelines/upload/docker/Jenkinsfile</scriptPath>
     <lightweight>false</lightweight>
   </definition>
   <triggers/>

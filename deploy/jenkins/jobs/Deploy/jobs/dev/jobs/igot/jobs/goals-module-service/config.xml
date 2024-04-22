@@ -30,7 +30,7 @@
         <hudson.model.StringParameterDefinition>
           <name>absolute_job_path</name>
           <description>&lt;font color=dimgray size=2&gt;&lt;b&gt;Do not change this value! The metadata.json will be copied from this job.&lt;/b&gt;&lt;/font&gt;</description>
-          <defaultValue>ArtifactUpload/dev/igot/sb-cb-ext-service</defaultValue>
+          <defaultValue>ArtifactUpload/dev/igot/goals-module-service</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -56,8 +56,8 @@ return """&lt;b&gt;This parameter is not used&lt;/b&gt;"""</script>
               <sandbox>false</sandbox>
             </secureFallbackScript>
           </script>
-          <projectName>sb-cb-ext-service</projectName>
-          <projectFullName>Deploy/dev/igot/sb-cb-ext-service</projectFullName>
+          <projectName>goals-module-service</projectName>
+          <projectFullName>Deploy/dev/igot/goals-module-service</projectFullName>
           <parameters class="linked-hash-map"/>
           <referencedParameters/>
           <choiceType>ET_FORMATTED_HTML</choiceType>
@@ -67,7 +67,7 @@ return """&lt;b&gt;This parameter is not used&lt;/b&gt;"""</script>
           <name>role_name</name>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
-              <string>deploy-sb-cb-ext-service</string>
+              <string>deploy-goals-module-service</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
@@ -88,7 +88,18 @@ return """&lt;b&gt;This parameter is not used&lt;/b&gt;"""</script>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
-      <triggers/>
+      <triggers>
+        <jenkins.triggers.ReverseBuildTrigger>
+          <spec/>
+          <upstreamProjects>ArtifactUpload/dev/igot/goals-module-service</upstreamProjects>
+          <threshold>
+            <name>SUCCESS</name>
+            <ordinal>0</ordinal>
+            <color>BLUE</color>
+            <completeBuild>true</completeBuild>
+          </threshold>
+        </jenkins.triggers.ReverseBuildTrigger>
+      </triggers>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2660.2664.v4c114e93f4c1">
@@ -101,7 +112,7 @@ return """&lt;b&gt;This parameter is not used&lt;/b&gt;"""</script>
       </userRemoteConfigs>
       <branches>
         <hudson.plugins.git.BranchSpec>
-          <name>cbrelease-4.8.10</name>
+          <name>compass-dev</name>
         </hudson.plugins.git.BranchSpec>
       </branches>
       <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
